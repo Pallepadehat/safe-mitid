@@ -35,7 +35,8 @@ The extension follows a simple architecture:
     "gecko": {
       "id": "mitidhide@example.com"
     }
-  }
+  },
+  "content_security_policy": "script-src 'self'; object-src 'self'"
 }
 ```
 
@@ -45,6 +46,24 @@ Key points:
 - Injects the content script into all webpages (`*://*/*`)
 - No special permissions are requested
 - Includes browser-specific settings for Firefox
+- Defines a strict Content Security Policy that only allows scripts from the extension itself
+
+### Content Security Policy
+
+The extension uses a strict Content Security Policy (CSP) to enhance security:
+
+```json
+"content_security_policy": "script-src 'self'; object-src 'self'"
+```
+
+This policy:
+
+- Only allows JavaScript from the extension's own files (`'self'`)
+- Only allows objects/plugins from the extension's own files (`'self'`)
+- Prevents inline scripts in HTML files from executing
+- Blocks eval() and similar functions that could execute arbitrary code
+
+This is important for security because it prevents potential code injection attacks and forces good coding practices like separating JavaScript from HTML.
 
 ### content.js
 

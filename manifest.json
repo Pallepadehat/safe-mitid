@@ -13,9 +13,5 @@
       "js": ["content.js"]
     }
   ],
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "mitid-cpr-mask@"
-    }
-  }
+  "content_security_policy": "script-src 'self'; object-src 'self'"
 }

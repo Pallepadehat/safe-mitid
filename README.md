@@ -50,11 +50,12 @@ The manifest file defines basic extension properties and permissions:
       "matches": ["*://*/*"],
       "js": ["content.js"]
     }
-  ]
+  ],
+  "content_security_policy": "script-src 'self'; object-src 'self'"
 }
 ```
 
-This tells Firefox to inject our content script into all web pages.
+This tells Firefox to inject our content script into all web pages and sets a strict Content Security Policy.
 
 ### content.js
 
@@ -95,12 +96,11 @@ A test page (`test.html`) is included to verify the extension works correctly:
 2. Note how the MitID username and CPR fields are automatically converted to password fields
 3. Test entering information to ensure it appears as dots
 
-## Building From Source
+## Security Features
 
-### Prerequisites
-
-- Firefox browser
-- Node.js (for packaging)
+- **Content Security Policy (CSP)**: The extension uses a strict CSP that prevents inline JavaScript and restricts script sources to only the extension itself. This helps protect against code injection attacks.
+- **No Permissions**: The extension doesn't request any special permissions, minimizing its security footprint.
+- **Local Processing**: All field masking happens locally in your browser.
 
 ## Privacy and Security Considerations
 
