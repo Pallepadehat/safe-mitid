@@ -102,13 +102,6 @@ A test page (`test.html`) is included to verify the extension works correctly:
 - Firefox browser
 - Node.js (for packaging)
 
-### Steps
-
-1. Clone this repository
-2. Run `./convert-icons.sh` to generate PNG icons from SVG files (requires librsvg or ImageMagick)
-3. Load the extension in Firefox for testing
-4. Run `npm run package` to create a distribution zip file
-
 ## Privacy and Security Considerations
 
 - This extension **only modifies the display** of input fields, not their functionality
