@@ -1,0 +1,11 @@
+{
+  "name": "mitid-cpr-mask",
+  "version": "1.0.0",
+  "description": "Firefox extension to mask MitID username and CPR number fields",
+  "scripts": {
+    "package": "zip -r mitid-cpr-mask.zip manifest.json content.js icons/ README.md TECHNICAL.md INSTALL.md test.html",
+    "test": "firefox test.html"
+  },
+  "author": "",
+  "license": "MIT"
+}

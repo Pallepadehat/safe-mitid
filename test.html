@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MitID & CPR Login Test</title>
+    <style>
+      body {
+        font-family: "IBM Plex Sans", Arial, sans-serif;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .mitid-core-header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .mitid-core-user {
+        margin-bottom: 20px;
+      }
+      .mitid-core-user__input {
+        display: flex;
+        margin-bottom: 10px;
+      }
+      .mitid-core-user__user-id {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .mitid-core-user__hide_btn {
+        margin-left: 10px;
+        padding: 10px;
+        background: #f0f0f0;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .mitid--button-primary {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 20px;
+        background: #1665de;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        width: 100%;
+        cursor: pointer;
+      }
+      .cpr-section {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #ccc;
+      }
+      .cpr-input-area {
+        margin-bottom: 20px;
+      }
+      .cpr-input-label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      .cpr-input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="blp-container">
+      <div id="coreClientParent">
+        <main id="mitId" class="mitid-loader notranslate mitid-core-client">
+          <form id="mitid-core-client-form" class="mitid-core-content">
+            <header class="mitid-core-header">
+              <h1 class="mitid-core-header__text">Log på hos Test Service</h1>
+            </header>
+
+            <section id="mitid-core-client-section" class="mitid-core-section">
+              <div class="mitid-core-user">
+                <div class="mitid-core-user__input">
+                  <input
+                    class="mitid-core-user__user-id"
+                    id="username1"
+                    name="username1"
+                    type="text"
+                    autocomplete="off"
+                    aria-label="Bruger ID"
+                    required
+                  />
+                  <div id="hideUserNameBtn1" class="mitid-core-user__hide_btn">
+                    Skjul
+                  </div>
+                </div>
+
+                <div class="mitid-core-user__input">
+                  <input
+                    class="mitid-core-user__user-id"
+                    id="username2"
+                    name="username2"
+                    type="text"
+                    autocomplete="off"
+                    aria-label="Bruger ID"
+                    required
+                  />
+                  <div id="hideUserNameBtn2" class="mitid-core-user__hide_btn">
+                    Skjul
+                  </div>
+                </div>
+              </div>
+
+              <button id="loginBtn" class="mitid--button-primary" type="button">
+                <span class="mitid--button-label">Fortsæt</span>
+              </button>
+            </section>
+
+            <section class="cpr-section">
+              <h2>CPR-nummer</h2>
+              <div class="cpr-input-area">
+                <label
+                  id="cpr-input-label"
+                  for="cpr-input"
+                  class="cpr-input-label"
+                  >CPR-nummer</label
+                >
+                <input
+                  id="cpr-input"
+                  class="cpr-input"
+                  type="tel"
+                  name="cpr"
+                  autocomplete="off"
+                  maxlength="10"
+                  pattern="\d{10}"
+                  placeholder="10 cifre"
+                  required
+                />
+              </div>
+
+              <button id="cprBtn" class="mitid--button-primary" type="button">
+                <span class="mitid--button-label">Fortsæt med CPR</span>
+              </button>
+            </section>
+          </form>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      // Simple test script to simulate the MitID functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        // Make the "Skjul" buttons toggle visibility
+        const hideButtons = document.querySelectorAll(
+          ".mitid-core-user__hide_btn"
+        );
+        hideButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const inputId = this.id.replace("hideUserNameBtn", "username");
+            const input = document.getElementById(inputId);
+            if (input.type === "text") {
+              input.type = "password";
+              this.textContent = "Vis";
+            } else {
+              input.type = "text";
+              this.textContent = "Skjul";
+            }
+          });
+        });
+
+        // Make the login button show an alert with the user ID
+        document
+          .getElementById("loginBtn")
+          .addEventListener("click", function () {
+            const username1 = document.getElementById("username1").value;
+            const username2 = document.getElementById("username2").value;
+            if (username1 || username2) {
+              alert(`Login attempted with user ID: ${username1 || username2}`);
+            } else {
+              alert("Please enter a user ID");
+            }
+          });
+
+        // Make the CPR button show an alert with the CPR number
+        document
+          .getElementById("cprBtn")
+          .addEventListener("click", function () {
+            const cpr = document.getElementById("cpr-input").value;
+            if (cpr) {
+              alert(`CPR verification attempted with: ${cpr}`);
+            } else {
+              alert("Please enter a CPR number");
+            }
+          });
+      });
+    </script>
+  </body>
+</html>
